@@ -1,0 +1,13 @@
+name: Main Pipline
+on:
+  push:
+    branches:
+     - main 
+  pull_request:
+
+jobs:
+  call-reusable:
+    uses: ./.github/workflowes./reusable-ci.yml
+    with:
+      node-version: "20"
+      run-tests: true   

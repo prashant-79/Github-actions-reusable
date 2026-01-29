@@ -1,0 +1,39 @@
+name: reusale build flow
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+        default: development
+      node-version:
+        required: false
+        type: string
+        default: '18'
+      run-tests:
+        requirew: false
+        type: boolean
+        default: true
+
+jobs:
+  ci:
+   runs-on: ubuntu-latest
+   steps: 
+     - name: checkout the code
+       uses: action/checkout@v4
+
+     - name: Setup node jobs
+       uses: action/setup-node@v4
+       with:
+        node-version: ${{ inputs.node-version }}
+
+     - name: install dependencies
+       run: npm install
+
+     - name: run Lint
+       run: npm run lint 
+
+     - name: Run tests
+        if: ${{ inputs.run-tests }}
+        run: npm tests
+

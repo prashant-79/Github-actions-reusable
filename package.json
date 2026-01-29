@@ -1,0 +1,7 @@
+{
+  "name": "demo-ci",
+  "scripts": {
+    "lint": "echo Lint passed",
+    "test": "echo Tests passed"
+  }
+}
